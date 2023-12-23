@@ -1,39 +1,24 @@
-import java.util.Scanner;
-
 public class Main {
 
+    // Recursive metot: a üzeri b hesaplama
+    static int ustAlma(int a, int b) {
+        if (b < 0) {
+            // Negatif üs durumu için
+            int tempB = -b;
+            System.out.print("1/"); // Sonucun kesirli bir şekilde yazdırılması
+            return (a * ustAlma(a, (tempB - 1)));
 
-    static void recursiveMetot(int number, int a, int b){
-
-        System.out.print(a + " , ");
-
-        if (a == number && b == 1){// a değeri kullanıcının girdiği sayıya veya 1 değerine eşitse metottan çıkılır.
-
-            return;
+        } else if (b > 0) {
+            // Pozitif üs durumu için
+            return a * ustAlma(a, b - 1);
+        } else {
+            // b = 0 durumu, herhangi bir sayı 0'a bölündüğünde sonuç 1 olur
+            return 1;
         }
-        if (a <= 0){// a değeri 0'ın altına düşerse b=1 olur.
-            b = 1;
-        }
-
-        recursiveMetot(number, a + (5 * b), b);// a değerine 5*b eklenir.
     }
+
     public static void main(String[] args) {
-
-
-        //Kullanıcıdan sayı istedik.
-
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Lütfen Bir Sayı Giriniz : ");
-        int number = scanner.nextInt();
-
-        if (number < 0 ) {
-            System.out.print("Hatalı Sayı Girdiniz!");
-        }
-        else {
-            recursiveMetot(number, number, -1);
-        }
+        // Test için 2 üzeri 3'ü hesaplama
+        System.out.println(ustAlma(2, 3));
     }
-
-
 }
